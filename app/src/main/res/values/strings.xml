@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TourSpots</string>
+    <!-- Lab 1: the initial "Hello world" text was replaced by the app greeting -->
+    <string name="hello_world">Hello world!</string>
+    <string name="greeting">Вітаємо у сервісі обміну туристичними локаціями!</string>
+    <string name="subtitle">Знаходьте нові місця та діліться власними відкриттями</string>
+    <string name="logo_description">Логотип TourSpots</string>
+    <string name="play_sound">Відтворити звук</string>
+</resources>
