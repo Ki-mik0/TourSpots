@@ -47,5 +47,13 @@
             android:freezesText="true"
             android:text="@string/result_hint"
             android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+        <Button
+            android:id="@+id/btnOpenLocations"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/open_category_locations" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

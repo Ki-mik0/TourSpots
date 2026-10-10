@@ -60,6 +60,66 @@
     <string name="error_wrong_credentials">Невірний логін або пароль. Залишилось спроб: %1$d</string>
     <string name="error_locked">Забагато невдалих спроб. Вхід заблоковано на %1$s</string>
 
+    <!-- Technical task: locations, reviews, profile -->
+    <string name="locations_title">Локації</string>
+    <string name="open_category_locations">Усі локації категорії</string>
+    <string name="profile_title">Профіль</string>
+    <string name="all_categories">Усі</string>
+    <string name="search_hint">Пошук локацій</string>
+    <string name="no_locations">Локацій не знайдено</string>
+    <string name="add_location">Додати локацію</string>
+    <string name="edit_location">Редагувати локацію</string>
+    <string name="location_meta">%1$s · автор: %2$s</string>
+    <string name="author_system">TourSpots</string>
+    <string name="location_title_hint">Назва</string>
+    <string name="location_description_hint">Опис</string>
+    <string name="category">Категорія</string>
+    <string name="coordinates">Координати</string>
+    <string name="latitude_hint">Широта</string>
+    <string name="longitude_hint">Довгота</string>
+    <string name="check_on_map">Перевірити на карті</string>
+    <string name="photos">Фотографії</string>
+    <string name="pick_photos">Обрати фото</string>
+    <string name="save">Зберегти</string>
+    <string name="delete">Видалити</string>
+    <string name="error_too_long">Занадто довгий текст</string>
+    <string name="error_not_number">Введіть число</string>
+    <string name="error_latitude_range">Широта має бути від −90 до 90</string>
+    <string name="error_longitude_range">Довгота має бути від −180 до 180</string>
+    <string name="error_fix_form">Виправте помилки у формі</string>
+    <string name="error_save_failed">Не вдалося зберегти локацію</string>
+    <string name="error_not_author">Редагувати локацію може лише її автор</string>
+    <string name="location_created">Локацію успішно створено</string>
+    <string name="location_updated">Локацію оновлено</string>
+    <string name="location_deleted">Локацію видалено</string>
+    <string name="delete_location_title">Видалити локацію?</string>
+    <string name="delete_location_message">«%1$s» буде видалено разом з фото та відгуками.</string>
+    <string name="show_on_map">На карті</string>
+    <string name="share">Поділитися</string>
+    <string name="share_location_text">%1$s\n%2$s\nКоординати: %3$s</string>
+    <string name="coordinates_value">Координати: %1$s</string>
+    <string name="no_map_app">Немає додатку для перегляду карти</string>
+    <string name="no_rating">Ще немає оцінок</string>
+    <string name="average_rating">%1$s з 5 · %2$s</string>
+    <string name="reviews">Відгуки</string>
+    <string name="no_reviews">Відгуків ще немає — будьте першими!</string>
+    <string name="add_review">Оцінити</string>
+    <string name="review_hint">Ваш відгук</string>
+    <string name="error_rating">Поставте оцінку від 1 до 5</string>
+    <string name="review_added">Відгук додано</string>
+    <string name="review_updated">Ваш відгук оновлено</string>
+    <string name="login_value">Логін: %1$s</string>
+    <string name="member_since">Зареєстровано: %1$s</string>
+    <string name="my_locations">Мої локації (%1$d)</string>
+    <string name="no_my_locations">Ви ще не додали жодної локації</string>
+
+    <plurals name="review_count">
+        <item quantity="one">%d відгук</item>
+        <item quantity="few">%d відгуки</item>
+        <item quantity="many">%d відгуків</item>
+        <item quantity="other">%d відгуку</item>
+    </plurals>
+
     <string-array name="categories">
         <item>Гори</item>
         <item>Озера</item>

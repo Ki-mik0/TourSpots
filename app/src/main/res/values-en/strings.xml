@@ -55,6 +55,63 @@
     <string name="error_wrong_credentials">Wrong login or password. Attempts left: %1$d</string>
     <string name="error_locked">Too many failed attempts. Sign-in is blocked for %1$s</string>
 
+    <string name="locations_title">Locations</string>
+    <string name="open_category_locations">All locations in category</string>
+    <string name="profile_title">Profile</string>
+    <string name="all_categories">All</string>
+    <string name="search_hint">Search locations</string>
+    <string name="no_locations">No locations found</string>
+    <string name="add_location">Add location</string>
+    <string name="edit_location">Edit location</string>
+    <string name="location_meta">%1$s · by %2$s</string>
+    <string name="author_system">TourSpots</string>
+    <string name="location_title_hint">Title</string>
+    <string name="location_description_hint">Description</string>
+    <string name="category">Category</string>
+    <string name="coordinates">Coordinates</string>
+    <string name="latitude_hint">Latitude</string>
+    <string name="longitude_hint">Longitude</string>
+    <string name="check_on_map">Check on map</string>
+    <string name="photos">Photos</string>
+    <string name="pick_photos">Pick photos</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="error_too_long">Text is too long</string>
+    <string name="error_not_number">Enter a number</string>
+    <string name="error_latitude_range">Latitude must be between −90 and 90</string>
+    <string name="error_longitude_range">Longitude must be between −180 and 180</string>
+    <string name="error_fix_form">Please fix the errors in the form</string>
+    <string name="error_save_failed">Could not save the location</string>
+    <string name="error_not_author">Only the author can edit this location</string>
+    <string name="location_created">Location created successfully</string>
+    <string name="location_updated">Location updated</string>
+    <string name="location_deleted">Location deleted</string>
+    <string name="delete_location_title">Delete location?</string>
+    <string name="delete_location_message">“%1$s” will be deleted together with its photos and reviews.</string>
+    <string name="show_on_map">On map</string>
+    <string name="share">Share</string>
+    <string name="share_location_text">%1$s\n%2$s\nCoordinates: %3$s</string>
+    <string name="coordinates_value">Coordinates: %1$s</string>
+    <string name="no_map_app">No app available to show the map</string>
+    <string name="no_rating">No ratings yet</string>
+    <string name="average_rating">%1$s of 5 · %2$s</string>
+    <string name="reviews">Reviews</string>
+    <string name="no_reviews">No reviews yet — be the first!</string>
+    <string name="add_review">Rate</string>
+    <string name="review_hint">Your review</string>
+    <string name="error_rating">Give a rating from 1 to 5</string>
+    <string name="review_added">Review added</string>
+    <string name="review_updated">Your review was updated</string>
+    <string name="login_value">Login: %1$s</string>
+    <string name="member_since">Member since %1$s</string>
+    <string name="my_locations">My locations (%1$d)</string>
+    <string name="no_my_locations">You have not added any locations yet</string>
+
+    <plurals name="review_count">
+        <item quantity="one">%d review</item>
+        <item quantity="other">%d reviews</item>
+    </plurals>
+
     <string-array name="categories">
         <item>Mountains</item>
         <item>Lakes</item>

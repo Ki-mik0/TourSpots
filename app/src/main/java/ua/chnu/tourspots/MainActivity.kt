@@ -10,45 +10,35 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
-import ua.chnu.tourspots.auth.LoginActivity
-import ua.chnu.tourspots.auth.SessionManager
-import ua.chnu.tourspots.data.TourDbHelper
-import ua.chnu.tourspots.data.UserDao
+import ua.chnu.tourspots.auth.AuthenticatedActivity
 import ua.chnu.tourspots.databinding.ActivityMainBinding
+import ua.chnu.tourspots.locations.Categories
+import ua.chnu.tourspots.locations.LocationListActivity
+import ua.chnu.tourspots.locations.ProfileActivity
 
-class MainActivity : AppCompatActivity() {
+/** Main screen with Labs 1–4; available only after authorization (Lab 5). */
+class MainActivity : AuthenticatedActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var session: SessionManager
     private var mediaPlayer: MediaPlayer? = null
 
     private val stopwatch = StopwatchController()
     private val handler = Handler(Looper.getMainLooper())
     private val tick = object : Runnable {
         override fun run() {
-            if (!updateSession()) return
+            updateSessionTime()
             updateTime()
             handler.postDelayed(this, TICK_MS)
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onAuthenticatedCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate (restored = ${savedInstanceState != null})")
-        session = SessionManager(this)
-        val user = session.userId?.let { UserDao(TourDbHelper.get(this)).findById(it) }
-        if (user == null) {
-            openLogin()
-            return
-        }
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        binding.header.tvGreeting.text = getString(R.string.hello_user, user.name)
+        binding.header.tvGreeting.text = getString(R.string.hello_user, currentUser.name)
 
         savedInstanceState?.let(stopwatch::restoreFrom)
 
@@ -81,6 +71,11 @@ class MainActivity : AppCompatActivity() {
             if (auto) showCategory(card.spinnerCategory.selectedItemPosition)
         }
         card.button1.isEnabled = !card.switchAuto.isChecked
+
+        card.btnOpenLocations.setOnClickListener {
+            val categoryId = Categories.idForPosition(card.spinnerCategory.selectedItemPosition)
+            startActivity(LocationListActivity.intent(this, categoryId))
+        }
     }
 
     /** Own reaction to the selected item: list of recommended places + category background. */
@@ -118,6 +113,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.action_locations -> {
+            startActivity(LocationListActivity.intent(this))
+            true
+        }
+        R.id.action_profile -> {
+            startActivity(Intent(this, ProfileActivity::class.java))
+            true
+        }
         R.id.action_logout -> {
             session.logout()
             openLogin()
@@ -128,23 +131,13 @@ class MainActivity : AppCompatActivity() {
 
     // ---------- Lab 5: authorization time ----------
 
-    /** Shows the remaining session time; when it runs out the user is logged out automatically. */
-    private fun updateSession(): Boolean {
-        val remaining = session.sessionRemainingMs
-        if (remaining <= 0) {
-            session.logout()
-            Toast.makeText(this, R.string.session_expired, Toast.LENGTH_LONG).show()
-            openLogin()
-            return false
-        }
-        binding.toolbar.subtitle = getString(R.string.session_left, StopwatchController.format(remaining + 999))
-        return true
-    }
-
-    private fun openLogin() {
-        handler.removeCallbacks(tick)
-        startActivity(Intent(this, LoginActivity::class.java))
-        finish()
+    /**
+     * Shows the remaining session time in the toolbar. When it runs out, AuthenticatedActivity
+     * logs the user out automatically and opens the login screen.
+     */
+    private fun updateSessionTime() {
+        binding.toolbar.subtitle =
+            getString(R.string.session_left, StopwatchController.format(session.sessionRemainingMs + 999))
     }
 
     // ---------- Lab 3: sending a message ----------

@@ -25,6 +25,20 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".locations.LocationListActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".locations.LocationDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".locations.LocationEditActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".locations.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReceiveMessageActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
