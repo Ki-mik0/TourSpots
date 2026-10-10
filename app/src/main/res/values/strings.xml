@@ -2,10 +2,7 @@
 <resources>
     <string name="app_name">TourSpots</string>
 
-    <!-- Lab 1: the initial "Hello world" text was replaced by the app greeting -->
-    <string name="hello_world">Привіт, світе!</string>
     <string name="greeting">Вітаємо у сервісі обміну туристичними локаціями!</string>
-    <string name="subtitle">Знаходьте нові місця та діліться власними відкриттями</string>
     <string name="logo_description">Логотип TourSpots</string>
     <string name="play_sound">Відтворити звук</string>
 
@@ -34,6 +31,34 @@
     <string name="stop">Стоп</string>
     <string name="reset">Скинути</string>
     <string name="pause_when_hidden">Пауза, коли екран перекрито іншим вікном</string>
+
+    <!-- Lab 5: authorization -->
+    <string name="login_title">Вхід</string>
+    <string name="register_title">Реєстрація</string>
+    <string name="name_hint">Ім\'я</string>
+    <string name="login_hint">Логін</string>
+    <string name="login_helper">3–20 символів: латинські літери, цифри, «_» або «.»</string>
+    <string name="password_hint">Пароль</string>
+    <string name="confirm_password_hint">Повторіть пароль</string>
+    <string name="login_button">Увійти</string>
+    <string name="register_button">Зареєструватися</string>
+    <string name="no_account_register">Немає облікового запису? Зареєструйтеся</string>
+    <string name="logout">Вийти</string>
+    <string name="login_time_left">Час на вхід: %1$s</string>
+    <string name="login_window_expired">Час на введення даних вичерпано. Спробуйте ще раз.</string>
+    <string name="session_left">Сесія: %1$s</string>
+    <string name="session_expired">Час сесії вичерпано. Увійдіть знову.</string>
+    <string name="hello_user">Вітаємо, %1$s!</string>
+    <string name="welcome_user">Ласкаво просимо, %1$s!</string>
+    <string name="registration_success">Реєстрацію завершено. Тепер увійдіть.</string>
+    <string name="error_required">Обов\'язкове поле</string>
+    <string name="error_name_short">Ім\'я має містити щонайменше 2 символи</string>
+    <string name="error_login_format">3–20 символів: латинські літери, цифри, «_» або «.»</string>
+    <string name="error_password_short">Пароль має містити щонайменше 6 символів</string>
+    <string name="error_passwords_differ">Паролі не збігаються</string>
+    <string name="error_login_taken">Цей логін уже зайнятий</string>
+    <string name="error_wrong_credentials">Невірний логін або пароль. Залишилось спроб: %1$d</string>
+    <string name="error_locked">Забагато невдалих спроб. Вхід заблоковано на %1$s</string>
 
     <string-array name="categories">
         <item>Гори</item>

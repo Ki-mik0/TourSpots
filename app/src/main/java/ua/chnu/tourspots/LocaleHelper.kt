@@ -2,10 +2,13 @@ package ua.chnu.tourspots
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatDelegate
@@ -30,6 +33,20 @@ object LocaleHelper {
     /** Persists the choice (autoStoreLocales) and recreates activities with the new resources. */
     fun apply(language: Language) {
         AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(language.tag))
+    }
+
+    /** Sets up the language Spinner placed as an action view in the top right corner of the toolbar. */
+    fun bindMenuSpinner(context: Context, menu: Menu) {
+        val spinner = menu.findItem(R.id.action_language).actionView as Spinner
+        spinner.adapter = Adapter(context)
+        spinner.setSelection(currentIndex(), false)
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position != currentIndex()) apply(languages[position])
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) = Unit
+        }
     }
 
     /** Spinner adapter showing a flag next to the language code. */

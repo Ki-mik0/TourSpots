@@ -7,22 +7,29 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
-import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import ua.chnu.tourspots.auth.LoginActivity
+import ua.chnu.tourspots.auth.SessionManager
+import ua.chnu.tourspots.data.TourDbHelper
+import ua.chnu.tourspots.data.UserDao
 import ua.chnu.tourspots.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var session: SessionManager
     private var mediaPlayer: MediaPlayer? = null
 
     private val stopwatch = StopwatchController()
     private val handler = Handler(Looper.getMainLooper())
     private val tick = object : Runnable {
         override fun run() {
+            if (!updateSession()) return
             updateTime()
             handler.postDelayed(this, TICK_MS)
         }
@@ -31,9 +38,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate (restored = ${savedInstanceState != null})")
+        session = SessionManager(this)
+        val user = session.userId?.let { UserDao(TourDbHelper.get(this)).findById(it) }
+        if (user == null) {
+            openLogin()
+            return
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+        binding.header.tvGreeting.text = getString(R.string.hello_user, user.name)
 
         savedInstanceState?.let(stopwatch::restoreFrom)
 
@@ -70,9 +85,7 @@ class MainActivity : AppCompatActivity() {
 
     /** Own reaction to the selected item: list of recommended places + category background. */
     private fun showCategory(position: Int) {
-        val places = resources.obtainTypedArray(R.array.category_locations).use { arrays ->
-            resources.getStringArray(arrays.getResourceId(position, 0))
-        }
+        val places = resources.getStringArray(resourceIdAt(R.array.category_locations, position))
         binding.cardCategories.tvResult.text = buildString {
             append(getString(R.string.recommendations_title, selectedCategoryName()))
             places.forEach { append("\n• ").append(it) }
@@ -81,9 +94,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun categoryBackground(position: Int): Int =
-        resources.obtainTypedArray(R.array.category_backgrounds).use {
-            it.getResourceId(position, R.drawable.bg_main)
+        resourceIdAt(R.array.category_backgrounds, position)
+
+    /** Reads the resource reference stored at [index] of a typed <array> from arrays.xml. */
+    private fun resourceIdAt(arrayRes: Int, index: Int): Int {
+        val array = resources.obtainTypedArray(arrayRes)
+        try {
+            return array.getResourceId(index, 0)
+        } finally {
+            array.recycle()
         }
+    }
 
     private fun selectedCategoryName(): String =
         binding.cardCategories.spinnerCategory.selectedItem.toString()
@@ -92,19 +113,38 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
-        val spinner = menu.findItem(R.id.action_language).actionView as Spinner
-        spinner.adapter = LocaleHelper.Adapter(this)
-        spinner.setSelection(LocaleHelper.currentIndex(), false)
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position != LocaleHelper.currentIndex()) {
-                    LocaleHelper.apply(LocaleHelper.languages[position])
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) = Unit
-        }
+        LocaleHelper.bindMenuSpinner(this, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.action_logout -> {
+            session.logout()
+            openLogin()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+    }
+
+    // ---------- Lab 5: authorization time ----------
+
+    /** Shows the remaining session time; when it runs out the user is logged out automatically. */
+    private fun updateSession(): Boolean {
+        val remaining = session.sessionRemainingMs
+        if (remaining <= 0) {
+            session.logout()
+            Toast.makeText(this, R.string.session_expired, Toast.LENGTH_LONG).show()
+            openLogin()
+            return false
+        }
+        binding.toolbar.subtitle = getString(R.string.session_left, StopwatchController.format(remaining + 999))
+        return true
+    }
+
+    private fun openLogin() {
+        handler.removeCallbacks(tick)
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 
     // ---------- Lab 3: sending a message ----------

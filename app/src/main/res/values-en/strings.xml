@@ -2,9 +2,7 @@
 <resources>
     <string name="app_name">TourSpots</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="greeting">Welcome to the tourist locations sharing service!</string>
-    <string name="subtitle">Discover new places and share your own finds</string>
     <string name="logo_description">TourSpots logo</string>
     <string name="play_sound">Play sound</string>
 
@@ -29,6 +27,33 @@
     <string name="stop">Stop</string>
     <string name="reset">Reset</string>
     <string name="pause_when_hidden">Pause while the screen is covered by another window</string>
+
+    <string name="login_title">Sign in</string>
+    <string name="register_title">Sign up</string>
+    <string name="name_hint">Name</string>
+    <string name="login_hint">Login</string>
+    <string name="login_helper">3–20 characters: Latin letters, digits, “_” or “.”</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Repeat password</string>
+    <string name="login_button">Sign in</string>
+    <string name="register_button">Sign up</string>
+    <string name="no_account_register">No account? Sign up</string>
+    <string name="logout">Log out</string>
+    <string name="login_time_left">Time to sign in: %1$s</string>
+    <string name="login_window_expired">Time to enter credentials ran out. Please try again.</string>
+    <string name="session_left">Session: %1$s</string>
+    <string name="session_expired">Your session has expired. Please sign in again.</string>
+    <string name="hello_user">Hello, %1$s!</string>
+    <string name="welcome_user">Welcome, %1$s!</string>
+    <string name="registration_success">Registration complete. Please sign in.</string>
+    <string name="error_required">Required field</string>
+    <string name="error_name_short">Name must be at least 2 characters</string>
+    <string name="error_login_format">3–20 characters: Latin letters, digits, “_” or “.”</string>
+    <string name="error_password_short">Password must be at least 6 characters</string>
+    <string name="error_passwords_differ">Passwords do not match</string>
+    <string name="error_login_taken">This login is already taken</string>
+    <string name="error_wrong_credentials">Wrong login or password. Attempts left: %1$d</string>
+    <string name="error_locked">Too many failed attempts. Sign-in is blocked for %1$s</string>
 
     <string-array name="categories">
         <item>Mountains</item>
