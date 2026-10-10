@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TourSpots</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="greeting">Welcome to the tourist locations sharing service!</string>
+    <string name="subtitle">Discover new places and share your own finds</string>
+    <string name="logo_description">TourSpots logo</string>
+    <string name="play_sound">Play sound</string>
+
+    <string name="choose_category">Choose a location category:</string>
+    <string name="auto_update">React immediately (no button)</string>
+    <string name="find_locations">Find locations</string>
+    <string name="recommendations_title">Recommended places — %1$s:</string>
+    <string name="result_hint">Choose a category and tap “Find locations”</string>
+    <string name="language">Language</string>
+
+    <string-array name="categories">
+        <item>Mountains</item>
+        <item>Lakes</item>
+        <item>Castles</item>
+        <item>Museums</item>
+        <item>Parks</item>
+    </string-array>
+
+    <string-array name="locations_mountains">
+        <item>Hoverla (2061 m)</item>
+        <item>Pip Ivan Chornohirskyi</item>
+        <item>Petros</item>
+        <item>Khomiak</item>
+    </string-array>
+    <string-array name="locations_lakes">
+        <item>Synevyr</item>
+        <item>Nesamovyte</item>
+        <item>Svitiaz</item>
+    </string-array>
+    <string-array name="locations_castles">
+        <item>Khotyn Fortress</item>
+        <item>Kamianets-Podilskyi Fortress</item>
+        <item>Palanok Castle (Mukachevo)</item>
+        <item>Olesko Castle</item>
+    </string-array>
+    <string-array name="locations_museums">
+        <item>Residence of Bukovinian Metropolitans</item>
+        <item>Museum of Folk Architecture (Chernivtsi)</item>
+        <item>Lviv National Art Gallery</item>
+    </string-array>
+    <string-array name="locations_parks">
+        <item>Sofiyivka Park (Uman)</item>
+        <item>Shevchenko Park (Chernivtsi)</item>
+        <item>Oleksandriia Park (Bila Tserkva)</item>
+    </string-array>
+</resources>

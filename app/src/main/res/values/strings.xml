@@ -1,10 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TourSpots</string>
+
     <!-- Lab 1: the initial "Hello world" text was replaced by the app greeting -->
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Привіт, світе!</string>
     <string name="greeting">Вітаємо у сервісі обміну туристичними локаціями!</string>
     <string name="subtitle">Знаходьте нові місця та діліться власними відкриттями</string>
     <string name="logo_description">Логотип TourSpots</string>
     <string name="play_sound">Відтворити звук</string>
+
+    <!-- Lab 2: drop-down list (Spinner) and the reaction to it -->
+    <string name="choose_category">Оберіть категорію локацій:</string>
+    <string name="auto_update">Реагувати одразу (без кнопки)</string>
+    <string name="find_locations">Знайти локації</string>
+    <string name="recommendations_title">Рекомендовані місця — %1$s:</string>
+    <string name="result_hint">Оберіть категорію та натисніть «Знайти локації»</string>
+    <string name="language">Мова</string>
+
+    <string-array name="categories">
+        <item>Гори</item>
+        <item>Озера</item>
+        <item>Замки</item>
+        <item>Музеї</item>
+        <item>Парки</item>
+    </string-array>
+
+    <string-array name="locations_mountains">
+        <item>Говерла (2061 м)</item>
+        <item>Піп Іван Чорногірський</item>
+        <item>Петрос</item>
+        <item>Хом\'як</item>
+    </string-array>
+    <string-array name="locations_lakes">
+        <item>Синевир</item>
+        <item>Несамовите</item>
+        <item>Світязь</item>
+    </string-array>
+    <string-array name="locations_castles">
+        <item>Хотинська фортеця</item>
+        <item>Кам\'янець-Подільська фортеця</item>
+        <item>Паланок (Мукачево)</item>
+        <item>Олеський замок</item>
+    </string-array>
+    <string-array name="locations_museums">
+        <item>Резиденція митрополитів Буковини</item>
+        <item>Музей народної архітектури та побуту (Чернівці)</item>
+        <item>Львівська національна галерея мистецтв</item>
+    </string-array>
+    <string-array name="locations_parks">
+        <item>Софіївка (Умань)</item>
+        <item>Шевченківський парк (Чернівці)</item>
+        <item>Олександрія (Біла Церква)</item>
+    </string-array>
 </resources>

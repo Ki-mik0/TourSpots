@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Non-translatable arrays aligned by index with @array/categories -->
+<resources>
+    <array name="category_backgrounds">
+        <item>@drawable/bg_mountains</item>
+        <item>@drawable/bg_lakes</item>
+        <item>@drawable/bg_castles</item>
+        <item>@drawable/bg_museums</item>
+        <item>@drawable/bg_parks</item>
+    </array>
+    <array name="category_locations">
+        <item>@array/locations_mountains</item>
+        <item>@array/locations_lakes</item>
+        <item>@array/locations_castles</item>
+        <item>@array/locations_museums</item>
+        <item>@array/locations_parks</item>
+    </array>
+</resources>
