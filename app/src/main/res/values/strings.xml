@@ -27,6 +27,14 @@
     <string name="received_message_title">Отримане повідомлення</string>
     <string name="message_about">Категорія: %1$s</string>
 
+    <!-- Lab 4: timer -->
+    <string name="stopwatch_title">Таймер подорожі</string>
+    <string name="time_zero" translatable="false">0:00:00</string>
+    <string name="start">Старт</string>
+    <string name="stop">Стоп</string>
+    <string name="reset">Скинути</string>
+    <string name="pause_when_hidden">Пауза, коли екран перекрито іншим вікном</string>
+
     <string-array name="categories">
         <item>Гори</item>
         <item>Озера</item>

@@ -24,6 +24,12 @@
     <string name="received_message_title">Received message</string>
     <string name="message_about">Category: %1$s</string>
 
+    <string name="stopwatch_title">Trip timer</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reset">Reset</string>
+    <string name="pause_when_hidden">Pause while the screen is covered by another window</string>
+
     <string-array name="categories">
         <item>Mountains</item>
         <item>Lakes</item>
