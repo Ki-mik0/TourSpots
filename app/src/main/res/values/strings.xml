@@ -17,6 +17,16 @@
     <string name="result_hint">Оберіть категорію та натисніть «Знайти локації»</string>
     <string name="language">Мова</string>
 
+    <!-- Lab 3: sending a message -->
+    <string name="message_hint">Ваше повідомлення про локацію</string>
+    <string name="send_in_app">Надіслати в додатку</string>
+    <string name="send_external">Надіслати через…</string>
+    <string name="share_chooser_title">Надіслати повідомлення за допомогою</string>
+    <string name="share_subject">TourSpots: %1$s</string>
+    <string name="error_empty_message">Введіть текст повідомлення</string>
+    <string name="received_message_title">Отримане повідомлення</string>
+    <string name="message_about">Категорія: %1$s</string>
+
     <string-array name="categories">
         <item>Гори</item>
         <item>Озера</item>

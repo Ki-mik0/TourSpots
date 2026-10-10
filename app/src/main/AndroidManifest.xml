@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ReceiveMessageActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
 
         <!-- Lab 2: persists the per-app language chosen via AppCompatDelegate on API < 33 -->
         <service

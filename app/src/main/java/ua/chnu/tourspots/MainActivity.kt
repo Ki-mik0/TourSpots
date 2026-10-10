@@ -1,5 +1,6 @@
 package ua.chnu.tourspots
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.Menu
@@ -7,6 +8,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import ua.chnu.tourspots.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +24,42 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnPlaySound.setOnClickListener { playIntroSound() }
         setupCategorySpinner()
+        setupMessaging()
     }
+
+    // ---------- Lab 3: sending a message ----------
+
+    private fun setupMessaging() {
+        // a) to a new window of this app (explicit intent)
+        binding.btnSendInApp.setOnClickListener {
+            val message = readMessage() ?: return@setOnClickListener
+            startActivity(ReceiveMessageActivity.intent(this, message, selectedCategoryName()))
+        }
+
+        // b) via other apps whose activities can send messages (implicit ACTION_SEND intent)
+        binding.btnSendExternal.setOnClickListener {
+            val message = readMessage() ?: return@setOnClickListener
+            val send = Intent(Intent.ACTION_SEND)
+                .setType("text/plain")
+                .putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject, selectedCategoryName()))
+                .putExtra(Intent.EXTRA_TEXT, message)
+            startActivity(Intent.createChooser(send, getString(R.string.share_chooser_title)))
+        }
+
+        binding.etMessage.doAfterTextChanged { binding.tilMessage.error = null }
+    }
+
+    /** Returns the trimmed message, or shows an error and returns null when it is empty. */
+    private fun readMessage(): String? {
+        val message = binding.etMessage.text?.toString()?.trim().orEmpty()
+        if (message.isEmpty()) {
+            binding.tilMessage.error = getString(R.string.error_empty_message)
+            return null
+        }
+        return message
+    }
+
+    private fun selectedCategoryName(): String = binding.spinnerCategory.selectedItem.toString()
 
     // ---------- Lab 2: drop-down list of categories ----------
 
