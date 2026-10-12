@@ -37,15 +37,43 @@ class MainActivity : AuthenticatedActivity() {
         Log.d(TAG, "onCreate (restored = ${savedInstanceState != null})")
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        BottomNav.setup(this, binding.bottomNav, R.id.nav_home)
         setSupportActionBar(binding.toolbar)
         binding.header.tvGreeting.text = getString(R.string.hello_user, currentUser.name)
 
         savedInstanceState?.let(stopwatch::restoreFrom)
 
         binding.header.btnPlaySound.setOnClickListener { playIntroSound() }
+        setupSections(savedInstanceState)
         setupCategorySpinner()
         setupMessaging()
         setupStopwatch()
+    }
+
+    // ---------- Collapsible lab cards ----------
+
+    private lateinit var sections: List<ExpandableSection>
+
+    /** Categories starts open; messaging and the timer start collapsed. Rotation keeps the last state. */
+    private fun setupSections(savedInstanceState: Bundle?) {
+        val saved = savedInstanceState?.getBooleanArray(KEY_SECTIONS)
+        val category = binding.cardCategories
+        val message = binding.cardMessage
+        val timer = binding.cardStopwatch
+        sections = listOf(
+            ExpandableSection(
+                category.headerCategories, category.bodyCategories, category.chevronCategories,
+                saved?.get(0) ?: true,
+            ),
+            ExpandableSection(
+                message.headerMessage, message.bodyMessage, message.chevronMessage,
+                saved?.get(1) ?: false,
+            ),
+            ExpandableSection(
+                timer.headerStopwatch, timer.bodyStopwatch, timer.chevronStopwatch,
+                saved?.get(2) ?: false,
+            ),
+        )
     }
 
     // ---------- Lab 2: drop-down list of categories ----------
@@ -192,6 +220,9 @@ class MainActivity : AuthenticatedActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         stopwatch.saveTo(outState)
+        if (::sections.isInitialized) {
+            outState.putBooleanArray(KEY_SECTIONS, sections.map { it.isExpanded }.toBooleanArray())
+        }
         Log.d(TAG, "onSaveInstanceState: ${StopwatchController.format(stopwatch.elapsedMs)}")
     }
 
@@ -259,5 +290,6 @@ class MainActivity : AuthenticatedActivity() {
     private companion object {
         const val TAG = "MainActivity"
         const val TICK_MS = 250L
+        const val KEY_SECTIONS = "home.sections"
     }
 }

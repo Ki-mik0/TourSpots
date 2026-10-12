@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main"
+    android:background="?attr/colorSurface"
     android:orientation="vertical"
     tools:context=".auth.RegisterActivity">
 
@@ -12,107 +12,102 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/green_primary"
+        android:background="?attr/colorSurface"
         app:navigationIcon="?attr/homeAsUpIndicator"
-        app:navigationIconTint="@color/white"
+        app:navigationIconTint="?attr/colorOnSurface"
         app:title="@string/register_title"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="?attr/colorOnSurface" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardBackgroundColor="@color/card_scrim"
-            app:cardCornerRadius="16dp">
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/space_24"
+            android:paddingBottom="@dimen/space_24">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilName"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_marginTop="@dimen/space_16"
+                android:hint="@string/name_hint">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilName"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/name_hint">
+                    android:autofillHints="name"
+                    android:inputType="textPersonName|textCapWords"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:autofillHints="name"
-                        android:inputType="textPersonName|textCapWords"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilLogin"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:hint="@string/login_hint"
+                app:helperText="@string/login_helper">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilLogin"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="@string/login_hint"
-                    app:helperText="@string/login_helper">
+                    android:autofillHints="username"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etLogin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:autofillHints="username"
-                        android:inputType="text"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilPassword"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:hint="@string/password_hint"
+                app:endIconMode="password_toggle">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilPassword"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="@string/password_hint"
-                    app:endIconMode="password_toggle">
+                    android:autofillHints="newPassword"
+                    android:inputType="textPassword"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:autofillHints="newPassword"
-                        android:inputType="textPassword"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilConfirm"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:hint="@string/confirm_password_hint"
+                app:endIconMode="password_toggle">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilConfirm"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etConfirm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="@string/confirm_password_hint"
-                    app:endIconMode="password_toggle">
+                    android:autofillHints="newPassword"
+                    android:inputType="textPassword"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etConfirm"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:autofillHints="newPassword"
-                        android:inputType="textPassword"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/btnRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/register_button" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+            <Button
+                android:id="@+id/btnRegister"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_24"
+                android:text="@string/register_button" />
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

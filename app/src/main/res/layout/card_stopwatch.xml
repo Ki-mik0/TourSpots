@@ -4,69 +4,98 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    app:cardBackgroundColor="@color/card_scrim"
-    app:cardCornerRadius="16dp">
+    android:layout_marginTop="@dimen/space_16"
+    app:cardBackgroundColor="?attr/colorSurfaceContainer"
+    app:cardCornerRadius="@dimen/corner_medium"
+    app:cardElevation="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/stopwatch_title"
-            android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-        <TextView
-            android:id="@+id/tvTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="monospace"
-            android:gravity="center"
-            android:text="@string/time_zero"
-            android:textSize="48sp"
-            android:textStyle="bold" />
+        android:padding="@dimen/space_16">
 
         <LinearLayout
+            android:id="@+id/headerStopwatch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btnStart"
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
                 android:layout_weight="1"
-                android:text="@string/start" />
+                android:text="@string/stopwatch_title"
+                android:textAppearance="?attr/textAppearanceTitleMedium" />
 
-            <Button
-                android:id="@+id/btnStop"
-                style="@style/Widget.Material3.Button.TonalButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="4dp"
-                android:layout_weight="1"
-                android:text="@string/stop" />
-
-            <Button
-                android:id="@+id/btnReset"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                android:text="@string/reset" />
+            <ImageView
+                android:id="@+id/chevronStopwatch"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_expand_more" />
         </LinearLayout>
 
-        <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/switchPauseHidden"
+        <LinearLayout
+            android:id="@+id/bodyStopwatch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/pause_when_hidden" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:text="@string/time_zero"
+                android:textSize="44sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnStart"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_4"
+                    android:layout_weight="1"
+                    android:text="@string/start" />
+
+                <Button
+                    android:id="@+id/btnStop"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/space_4"
+                    android:layout_weight="1"
+                    android:text="@string/stop" />
+
+                <Button
+                    android:id="@+id/btnReset"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_4"
+                    android:layout_weight="1"
+                    android:text="@string/reset" />
+            </LinearLayout>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchPauseHidden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:checked="true"
+                android:text="@string/pause_when_hidden" />
+        </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

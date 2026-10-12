@@ -11,8 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/green_primary"
-        android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
+        android:background="?attr/colorSurface"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="@string/profile_title" />
 
@@ -72,7 +71,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvLocations"
@@ -90,4 +90,10 @@
             android:text="@string/no_my_locations"
             android:visibility="gone" />
     </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/menu_bottom_nav" />
 </LinearLayout>

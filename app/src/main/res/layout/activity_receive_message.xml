@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main"
+    android:background="?attr/colorSurface"
     android:orientation="vertical"
     tools:context=".ReceiveMessageActivity">
 
@@ -12,18 +12,18 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/green_primary"
+        android:background="?attr/colorSurface"
         app:navigationIcon="?attr/homeAsUpIndicator"
-        app:navigationIconTint="@color/white"
+        app:navigationIconTint="?attr/colorOnSurface"
         app:title="@string/received_message_title"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="?attr/colorOnSurface" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardBackgroundColor="@color/card_scrim"
-        app:cardCornerRadius="16dp">
+        app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
+        app:cardCornerRadius="@dimen/corner_medium">
 
         <LinearLayout
             android:layout_width="match_parent"

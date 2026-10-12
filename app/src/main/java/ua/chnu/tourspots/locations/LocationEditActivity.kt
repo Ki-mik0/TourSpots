@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -30,6 +31,7 @@ class LocationEditActivity : AuthenticatedActivity() {
 
     /** Id of the edited location, or 0 when a new one is being added. */
     private var locationId = 0L
+    private var categoryPosition = 0
     private val pendingPhotos = ArrayList<String>()
 
     private val pickPhotos = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(MAX_PHOTOS)) { uris ->
@@ -46,6 +48,7 @@ class LocationEditActivity : AuthenticatedActivity() {
         dao = LocationDao(TourDbHelper.get(this))
         storage = PhotoStorage(this)
         locationId = intent.getLongExtra(EXTRA_LOCATION_ID, 0L)
+        setupCategoryDropdown(savedInstanceState?.getInt(KEY_CATEGORY) ?: 0)
 
         if (locationId != 0L) {
             binding.toolbar.setTitle(R.string.edit_location)
@@ -59,14 +62,14 @@ class LocationEditActivity : AuthenticatedActivity() {
             if (savedInstanceState == null) {
                 binding.etTitle.setText(location.title)
                 binding.etDescription.setText(location.description)
-                binding.spinnerCategory.setSelection(Categories.positionForId(location.categoryId))
+                selectCategory(Categories.positionForId(location.categoryId))
                 binding.etLatitude.setText(location.latitude.toString())
                 binding.etLongitude.setText(location.longitude.toString())
             }
             dao.photos(locationId).forEach { addThumbnail(it.path) }
         } else if (savedInstanceState == null) {
             val categoryId = intent.getIntExtra(EXTRA_CATEGORY_ID, 0)
-            if (categoryId > 0) binding.spinnerCategory.setSelection(Categories.positionForId(categoryId))
+            if (categoryId > 0) selectCategory(Categories.positionForId(categoryId))
         }
 
         savedInstanceState?.getStringArrayList(KEY_PENDING)?.let { saved ->
@@ -88,6 +91,21 @@ class LocationEditActivity : AuthenticatedActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putStringArrayList(KEY_PENDING, pendingPhotos)
+        outState.putInt(KEY_CATEGORY, categoryPosition)
+    }
+
+    /** The dropdown shows the category name; the position is kept separately to map it to an id. */
+    private fun setupCategoryDropdown(initialPosition: Int) {
+        binding.spinnerCategory.setAdapter(
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, Categories.names(this)),
+        )
+        binding.spinnerCategory.setOnItemClickListener { _, _, position, _ -> categoryPosition = position }
+        selectCategory(initialPosition)
+    }
+
+    private fun selectCategory(position: Int) {
+        categoryPosition = position
+        binding.spinnerCategory.setText(Categories.names(this)[position], false)
     }
 
     private fun readInput() = LocationValidator.Input(
@@ -105,7 +123,7 @@ class LocationEditActivity : AuthenticatedActivity() {
             Toast.makeText(this, R.string.error_fix_form, Toast.LENGTH_SHORT).show()
             return
         }
-        val categoryId = Categories.idForPosition(binding.spinnerCategory.selectedItemPosition)
+        val categoryId = Categories.idForPosition(categoryPosition)
         val photos = storage.commit(pendingPhotos)
         pendingPhotos.clear()
         pendingPhotos += photos   // keep the committed paths if saving fails below
@@ -166,6 +184,7 @@ class LocationEditActivity : AuthenticatedActivity() {
         private const val EXTRA_LOCATION_ID = "ua.chnu.tourspots.extra.LOCATION_ID"
         private const val EXTRA_CATEGORY_ID = "ua.chnu.tourspots.extra.CATEGORY_ID"
         private const val KEY_PENDING = "edit.pendingPhotos"
+        private const val KEY_CATEGORY = "edit.categoryPosition"
         private const val MAX_PHOTOS = 5
 
         fun intent(context: Context, locationId: Long = 0L, categoryId: Int? = null): Intent =

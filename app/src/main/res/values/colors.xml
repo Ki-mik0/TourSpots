@@ -1,8 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="green_primary">#2E8B57</color>
-    <color name="sky">#7EC8E3</color>
-    <color name="white">#FFFFFF</color>
-    <color name="card_scrim">#CCFFFFFF</color>
+    <!-- Seed: existing TourSpots green. Light scheme -->
+    <color name="md_primary">#1F7048</color>
+    <color name="md_on_primary">#FFFFFF</color>
+    <color name="md_primary_container">#B4F0CB</color>
+    <color name="md_on_primary_container">#00210F</color>
+    <color name="md_secondary">#3F6374</color>
+    <color name="md_on_secondary">#FFFFFF</color>
+    <color name="md_secondary_container">#C3E8FB</color>
+    <color name="md_on_secondary_container">#001F2A</color>
+    <color name="md_tertiary">#7EC8E3</color>
+    <color name="md_on_tertiary">#003547</color>
+    <color name="md_tertiary_container">#D0EEFA</color>
+    <color name="md_on_tertiary_container">#001F2A</color>
+    <color name="md_surface">#FAF8F3</color>
+    <color name="md_on_surface">#171D1A</color>
+    <color name="md_surface_variant">#DCE5DD</color>
+    <color name="md_on_surface_variant">#404943</color>
+    <color name="md_surface_container">#EAF0EB</color>
+    <color name="md_surface_container_high">#E4EAE5</color>
+    <color name="md_outline">#707973</color>
+    <color name="md_error">#BA1A1A</color>
+    <color name="md_on_error">#FFFFFF</color>
+
+    <!-- Dark scheme -->
+    <color name="md_primary_dark">#8FD8AE</color>
+    <color name="md_on_primary_dark">#003920</color>
+    <color name="md_primary_container_dark">#00522F</color>
+    <color name="md_on_primary_container_dark">#B4F0CB</color>
+    <color name="md_secondary_dark">#A8CCDE</color>
+    <color name="md_on_secondary_dark">#133442</color>
+    <color name="md_secondary_container_dark">#2A4B5A</color>
+    <color name="md_on_secondary_container_dark">#C3E8FB</color>
+    <color name="md_tertiary_dark">#7EC8E3</color>
+    <color name="md_on_tertiary_dark">#003547</color>
+    <color name="md_tertiary_container_dark">#004D66</color>
+    <color name="md_on_tertiary_container_dark">#D0EEFA</color>
+    <color name="md_surface_dark">#121613</color>
+    <color name="md_on_surface_dark">#DEE4DE</color>
+    <color name="md_surface_variant_dark">#404943</color>
+    <color name="md_on_surface_variant_dark">#C0C9C1</color>
+    <color name="md_surface_container_dark">#1B211D</color>
+    <color name="md_surface_container_high_dark">#262C27</color>
+    <color name="md_outline_dark">#8A938C</color>
+    <color name="md_error_dark">#FFB4AB</color>
+    <color name="md_on_error_dark">#690005</color>
+
+    <!-- Kept for ratings -->
     <color name="rating">#E09B00</color>
 </resources>

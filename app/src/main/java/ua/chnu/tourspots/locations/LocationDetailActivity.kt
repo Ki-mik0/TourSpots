@@ -30,6 +30,7 @@ class LocationDetailActivity : AuthenticatedActivity() {
     private lateinit var binding: ActivityLocationDetailBinding
     private lateinit var dao: LocationDao
     private var location: Location? = null
+    private var showAllReviews = false
 
     override fun onAuthenticatedCreate(savedInstanceState: Bundle?) {
         binding = ActivityLocationDetailBinding.inflate(layoutInflater)
@@ -38,11 +39,11 @@ class LocationDetailActivity : AuthenticatedActivity() {
         binding.toolbar.setNavigationOnClickListener { finish() }
         dao = LocationDao(TourDbHelper.get(this))
 
-        binding.btnShowOnMap.setOnClickListener {
-            location?.let { MapLauncher.show(this, it.latitude, it.longitude, it.title) }
-        }
-        binding.btnShare.setOnClickListener { location?.let(::share) }
         binding.btnAddReview.setOnClickListener { showReviewDialog() }
+        binding.btnShowAllReviews.setOnClickListener {
+            showAllReviews = !showAllReviews
+            location?.let { showReviews(it.id) }
+        }
     }
 
     override fun onResume() {
@@ -60,7 +61,7 @@ class LocationDetailActivity : AuthenticatedActivity() {
         invalidateOptionsMenu()
 
         with(binding) {
-            toolbar.title = loaded.title
+            collapsingToolbar.title = loaded.title
             ivHeader.setImageResource(Categories.background(this@LocationDetailActivity, loaded.categoryId))
             tvTitle.text = loaded.title
             tvMeta.text = getString(
@@ -103,13 +104,22 @@ class LocationDetailActivity : AuthenticatedActivity() {
         }
     }
 
+    /** Only the first few reviews are shown until the user asks for the rest. */
     private fun showReviews(locationId: Long) {
         val list = binding.reviewList
         list.removeAllViews()
         val reviews = dao.reviews(locationId)
         binding.tvNoReviews.visibility = if (reviews.isEmpty()) View.VISIBLE else View.GONE
+        val hidden = (reviews.size - REVIEWS_PREVIEW).coerceAtLeast(0)
+        binding.btnShowAllReviews.visibility = if (hidden > 0) View.VISIBLE else View.GONE
+        binding.btnShowAllReviews.text = if (showAllReviews) {
+            getString(R.string.show_fewer_reviews)
+        } else {
+            getString(R.string.show_all_reviews, reviews.size)
+        }
+        val visible = if (showAllReviews) reviews else reviews.take(REVIEWS_PREVIEW)
         val dateFormat = DateFormat.getMediumDateFormat(this)
-        reviews.forEach { review ->
+        visible.forEach { review ->
             val item = ItemReviewBinding.inflate(layoutInflater, list, false)
             item.tvAuthor.text = review.userName
             item.rating.rating = review.rating.toFloat()
@@ -178,6 +188,14 @@ class LocationDetailActivity : AuthenticatedActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val current = location ?: return super.onOptionsItemSelected(item)
         return when (item.itemId) {
+            R.id.action_map -> {
+                MapLauncher.show(this, current.latitude, current.longitude, current.title)
+                true
+            }
+            R.id.action_share -> {
+                share(current)
+                true
+            }
             R.id.action_edit -> {
                 startActivity(LocationEditActivity.intent(this, locationId = current.id))
                 true
@@ -206,6 +224,7 @@ class LocationDetailActivity : AuthenticatedActivity() {
 
     companion object {
         private const val EXTRA_LOCATION_ID = "ua.chnu.tourspots.extra.LOCATION_ID"
+        private const val REVIEWS_PREVIEW = 3
 
         fun intent(context: Context, locationId: Long): Intent =
             Intent(context, LocationDetailActivity::class.java).putExtra(EXTRA_LOCATION_ID, locationId)

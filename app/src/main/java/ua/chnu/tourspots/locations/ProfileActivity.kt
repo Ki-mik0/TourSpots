@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.View
 import ua.chnu.tourspots.R
+import ua.chnu.tourspots.BottomNav
 import ua.chnu.tourspots.auth.AuthenticatedActivity
 import ua.chnu.tourspots.data.LocationDao
 import ua.chnu.tourspots.data.TourDbHelper
@@ -20,6 +21,7 @@ class ProfileActivity : AuthenticatedActivity() {
     override fun onAuthenticatedCreate(savedInstanceState: Bundle?) {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        BottomNav.setup(this, binding.bottomNav, R.id.nav_profile)
         binding.toolbar.setNavigationOnClickListener { finish() }
         dao = LocationDao(TourDbHelper.get(this))
 

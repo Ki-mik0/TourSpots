@@ -58,6 +58,12 @@
     <string name="locations_title">Locations</string>
     <string name="open_category_locations">All locations in category</string>
     <string name="profile_title">Profile</string>
+    <string name="nav_home">Home</string>
+    <string name="message_title">Message</string>
+    <string name="section_basics">Basics</string>
+    <string name="section_location">Location &amp; photos</string>
+    <string name="show_all_reviews">Show all (%d)</string>
+    <string name="show_fewer_reviews">Show less</string>
     <string name="all_categories">All</string>
     <string name="search_hint">Search locations</string>
     <string name="no_locations">No locations found</string>

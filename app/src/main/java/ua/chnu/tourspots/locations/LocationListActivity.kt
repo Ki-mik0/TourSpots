@@ -8,6 +8,7 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import com.google.android.material.chip.Chip
 import ua.chnu.tourspots.R
+import ua.chnu.tourspots.BottomNav
 import ua.chnu.tourspots.auth.AuthenticatedActivity
 import ua.chnu.tourspots.data.LocationDao
 import ua.chnu.tourspots.data.TourDbHelper
@@ -27,6 +28,7 @@ class LocationListActivity : AuthenticatedActivity() {
     override fun onAuthenticatedCreate(savedInstanceState: Bundle?) {
         binding = ActivityLocationListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        BottomNav.setup(this, binding.bottomNav, R.id.nav_feed)
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener { finish() }
         dao = LocationDao(TourDbHelper.get(this))

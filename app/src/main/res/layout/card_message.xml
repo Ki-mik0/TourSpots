@@ -4,53 +4,86 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    app:cardBackgroundColor="@color/card_scrim"
-    app:cardCornerRadius="16dp">
+    android:layout_marginTop="@dimen/space_16"
+    app:cardBackgroundColor="?attr/colorSurfaceContainer"
+    app:cardCornerRadius="@dimen/corner_medium"
+    app:cardElevation="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilMessage"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/message_hint">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etMessage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine|textCapSentences"
-                android:maxLines="4" />
-        </com.google.android.material.textfield.TextInputLayout>
+        android:padding="@dimen/space_16">
 
         <LinearLayout
+            android:id="@+id/headerMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btnSendInApp"
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
                 android:layout_weight="1"
-                android:text="@string/send_in_app" />
+                android:text="@string/message_title"
+                android:textAppearance="?attr/textAppearanceTitleMedium" />
 
-            <Button
-                android:id="@+id/btnSendExternal"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/chevronMessage"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_expand_more" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bodyMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMessage"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                android:text="@string/send_external" />
+                android:layout_marginTop="@dimen/space_8"
+                android:hint="@string/message_hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:maxLines="4" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSendInApp"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_4"
+                    android:layout_weight="1"
+                    android:text="@string/send_in_app" />
+
+                <Button
+                    android:id="@+id/btnSendExternal"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_4"
+                    android:layout_weight="1"
+                    android:text="@string/send_external" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

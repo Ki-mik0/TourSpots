@@ -64,6 +64,12 @@
     <string name="locations_title">Локації</string>
     <string name="open_category_locations">Усі локації категорії</string>
     <string name="profile_title">Профіль</string>
+    <string name="nav_home">Головна</string>
+    <string name="message_title">Повідомлення</string>
+    <string name="section_basics">Основне</string>
+    <string name="section_location">Локація та фото</string>
+    <string name="show_all_reviews">Показати всі (%d)</string>
+    <string name="show_fewer_reviews">Згорнути</string>
     <string name="all_categories">Усі</string>
     <string name="search_hint">Пошук локацій</string>
     <string name="no_locations">Локацій не знайдено</string>

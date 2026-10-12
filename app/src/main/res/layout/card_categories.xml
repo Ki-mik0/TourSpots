@@ -4,56 +4,85 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    app:cardBackgroundColor="@color/card_scrim"
-    app:cardCornerRadius="16dp">
+    android:layout_marginTop="@dimen/space_16"
+    app:cardBackgroundColor="?attr/colorSurfaceContainer"
+    app:cardCornerRadius="@dimen/corner_medium"
+    app:cardElevation="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/space_16">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/choose_category"
-            android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-        <Spinner
-            android:id="@+id/spinnerCategory"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:entries="@array/categories" />
-
-        <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/switchAuto"
+        <LinearLayout
+            android:id="@+id/headerCategories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/auto_update" />
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button1"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/choose_category"
+                android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+            <ImageView
+                android:id="@+id/chevronCategories"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_expand_more" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bodyCategories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/find_locations" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvResult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:freezesText="true"
-            android:text="@string/result_hint"
-            android:textAppearance="?attr/textAppearanceBodyLarge" />
+            <Spinner
+                android:id="@+id/spinnerCategory"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="@dimen/space_8"
+                android:entries="@array/categories" />
 
-        <Button
-            android:id="@+id/btnOpenLocations"
-            style="@style/Widget.Material3.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="@string/open_category_locations" />
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchAuto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:text="@string/auto_update" />
+
+            <Button
+                android:id="@+id/button1"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:text="@string/find_locations" />
+
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:freezesText="true"
+                android:lineSpacingMultiplier="1.2"
+                android:text="@string/result_hint"
+                android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+            <Button
+                android:id="@+id/btnOpenLocations"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/open_category_locations" />
+        </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

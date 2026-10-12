@@ -5,7 +5,7 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main"
+    android:background="?attr/colorSurface"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -13,13 +13,14 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/green_primary"
+        android:background="?attr/colorSurface"
         app:title="@string/app_name"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="?attr/colorOnSurface" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:fillViewport="true">
 
         <LinearLayout
@@ -46,4 +47,10 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/menu_bottom_nav" />
 </LinearLayout>
